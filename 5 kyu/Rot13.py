@@ -20,5 +20,20 @@ Test examples:
 
 
 def rot13(message):
-    #your code here
+    result = ''
+    for i in message:
+        if (65 <= ord(i) <= 90) and ord(i) + 13 <= 90:
+            result += chr(ord(i) + 13)
+        elif (65 <= ord(i) <= 90) and ord(i) + 13 > 90:
+            result += chr(ord(i) - 13)
+        elif (97 <= ord(i) <= 122) and ord(i) + 13 <= 122:
+            result += chr(ord(i) + 13)
+        elif (97 <= ord(i) <= 122) and ord(i) + 13 > 122:
+            result += chr(ord(i) - 13)
+        else:
+            result += i
+    return result
 
+
+if __name__ == '__main__':
+    print(rot13(input()))
