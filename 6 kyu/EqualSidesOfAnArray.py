@@ -40,7 +40,6 @@ def find_even_index(arr):
 
 
 if __name__ == "__main__":
-    print(find_even_index([20,10,-80,10,10,15,35]))
-    print(find_even_index([0,0,0,0,0]))
+    print(find_even_index([20, 10, -80, 10, 10, 15, 35]))
+    print(find_even_index([0, 0, 0, 0, 0]))
     # print(find_even_index([1,2,3,4,5,6]))
-
