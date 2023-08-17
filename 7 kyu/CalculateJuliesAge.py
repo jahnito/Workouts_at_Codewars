@@ -19,7 +19,7 @@ That is, Julie is 15 years younger and 0.25 times the age of her brother.
 
 Do not concern yourself with the imperfections inherent in dividing by floating point numbers, as your answer will be rounded. Also, for the sake of simplicity, Julie is never the same age as her brother.
 '''
-from time import time
+import math
 
 # def age(x, y):
 #     s = 0
@@ -32,29 +32,20 @@ from time import time
 #             return s * y
 
 def age(x, y):
-    brother_age = x
-    if x > 0:
-        inc = x
-    else:
-        inc = -x
-        x = -x
-    fl = True
-
+    # s / y == s - x
+    # 9 / 3 == 9 - 6 => 3 + 6 == 3 * 3
+    B = 0
     while True:
-        if (round(brother_age, 0) + x) / y == round(brother_age, 0):
-            return round(brother_age, 0) + x
-        elif (brother_age + x) / y > brother_age and fl:
-            inc = (-inc / 2)
-            fl = False
-        elif (brother_age + x) / y < brother_age and not fl:
-            inc = (-inc / 2)
-            fl = True
+        a = B * y
+        b = B + x
+        if math.floor(a) == b and x < 0:
+            return B + x
+        if math.ceil(a) == b and x > 0:
+            return B + x
 
-        brother_age += inc
+        B += 1
 
 
 if __name__ == '__main__':
-    start = time()
     print(age(6, 3))
-    end = time()
-    print(end)
+    print(age(-15, 0.25))
