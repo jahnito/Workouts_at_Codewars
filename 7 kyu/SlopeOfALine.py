@@ -14,10 +14,10 @@ https://infofaq.ru/ugol-naklona-pryamoj.html
 '''
 
 
-from math import tan, atan2
-
 def get_slope(p1, p2):
     x1, x2, y1, y2 = p1[0], p2[0], p1[1], p2[1]
+    if x1 == x2 and y1 == y2 or x1 == x2:
+        return None
     return (y2 - y1) / (x2 - x1)
 
 
