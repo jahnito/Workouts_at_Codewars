@@ -38,24 +38,71 @@ result : "You win!"
 # new comparations (even with invalid numbers) will result in : "You already won!"
 # the same logic applies to being out of turns
 '''
-
 from random import randint
+
 
 class BullsAndCows:
     def __init__(self, n):
-        self.secret_number = n
-        self.gg = False
+        if not self.check_uniq(n):
+            raise ValueError
+        self.num = n
+        self.win = False
         self.attempts = 8
 
     def compare_with(self, n):
-        pass
+        if self.check_win():
+            return 'You already won!'
+        if self.check_attempts():
+            return 'Sorry, you\'re out of turns!'
+        if not self.check_uniq(n):
+            raise ValueError
+        if n == self.num:
+            self.win = True
+            return 'You win!'
+        bulls = self.check_bulls(n)
+        cows = self.check_cows(n)
+        b = 'bulls' if bulls != 1 else 'bull'
+        c = 'cows' if cows != 1 else 'cow'
+        self.attempts -= 1
+        return f'{bulls} {b} and {cows} {c}'
+
+
+    def check_uniq(self, n):
+        if 1000 < n < 10000 and len(set(str(n))) == 4:
+            return True
+        else:
+            return False
+
+    def check_win(self):
+        if self.win:
+            return True
+        else:
+            return False
+
+    def check_attempts(self):
+        if self.attempts == 0:
+            return True
+        else:
+            return False
+
+    def check_bulls(self, n):
+        res = 0
+        secret_num, num = str(self.num), str(n)
+        for i in range(4):
+            if secret_num[i] == num[i]:
+                res += 1
+        return res
+
+    def check_cows(self, n):
+        res = 0
+        secret_num, num = str(self.num), str(n)
+        for i in range(4):
+            if secret_num[i] != num[i] and num[i] in secret_num:
+                res += 1
+        return res
+
 
 if __name__ == '__main__':
-    bac = BullsAndCows(7536)
-    # print(bac.secret_number)
-    for i in range(8):
-        print(bac.compare_with(randint(1000, 9300)))
-    # print(bac.compare_with(1523))
-
-
-INCOMplete
+    bac = BullsAndCows(4321)
+    for i in range(9):
+        print(bac.compare_with(4031))
