@@ -20,5 +20,11 @@ def digital_root(n):
         n = sum([int(i) for i in str(n)])
     return n
 
-n = int(input())
-print(digital_root(n))
+def digital_root(n):
+    while n > 9:
+        res = 0
+        while n > 0:
+            res += n % 10
+            n = n // 10
+        n = res
+    return n
