@@ -37,8 +37,10 @@ def squares_needed(grains, n=64):
         return 0
     elif grains == 1:
         return 1
-    if 2 ** n >= grains > 2 ** (n - 1):
-        return n + 1
+    elif 2 <= grains < 4:
+        return 2
+    if 2 ** (n - 1) <= grains < 2 ** n:
+        return n
     else:
         return squares_needed(grains, n - 1)
 
@@ -49,4 +51,8 @@ if __name__ == '__main__':
     print(squares_needed(2))
     print(squares_needed(3))
     print(squares_needed(4))
+    print(squares_needed(5))
+    print(squares_needed(192))
+    print(squares_needed(4000000000))
+
 
