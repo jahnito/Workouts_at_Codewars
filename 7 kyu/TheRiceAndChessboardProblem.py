@@ -32,17 +32,25 @@ Input is always going to be valid/reasonable: ie: a non negative number; extra c
 #             prev = i ** 2
 
 
-def squares_needed(grains, n=64):
+# def squares_needed(grains, n=64):
+#     if grains == 0:
+#         return 0
+#     elif grains == 1:
+#         return 1
+#     elif 2 <= grains < 4:
+#         return 2
+#     if 2 ** (n - 1) <= grains < 2 ** n:
+#         return n
+#     else:
+#         return squares_needed(grains, n - 1)
+
+# best practice 
+
+def squares_needed(grains):
     if grains == 0:
         return 0
-    elif grains == 1:
-        return 1
-    elif 2 <= grains < 4:
-        return 2
-    if 2 ** (n - 1) <= grains < 2 ** n:
-        return n
     else:
-        return squares_needed(grains, n - 1)
+        return squares_needed(grains // 2) + 1
 
 
 if __name__ == '__main__':
@@ -54,5 +62,3 @@ if __name__ == '__main__':
     print(squares_needed(5))
     print(squares_needed(192))
     print(squares_needed(4000000000))
-
-
