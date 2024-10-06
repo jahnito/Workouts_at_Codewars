@@ -11,9 +11,14 @@ two_sum([1, 2, 3], 4) # returns (0, 2) or (2, 0)
 two_sum([3, 2, 4], 6) # returns (1, 2) or (2, 1)
 '''
 
-def two_sum(numbers, target):
-    
-
+def two_sum(numbers:list, target):
+    k = 0
+    for i in range(len(numbers[:-1])):
+        k +=1
+        for j in range(len(numbers[k:])):
+            if numbers[i] + numbers[j + k] == target:
+                # print(k - 1, j + k)
+                return (k - 1, j + k)
 
 
 if __name__ == '__main__':
